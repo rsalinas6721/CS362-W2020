@@ -1,6 +1,6 @@
 import Dominion
 
-def GetBoxes():
+def GetBoxes(nV):
     #Define Box
     box = {}
     box["Woodcutter"]=[Dominion.Woodcutter()]*10
