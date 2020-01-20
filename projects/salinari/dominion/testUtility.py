@@ -19,7 +19,7 @@ def GetBoxes(nV):
     box["Feast"]=[Dominion.Feast()]*10
     box["Mine"]=[Dominion.Mine()]*10
     box["Library"]=[Dominion.Library()]*10
-    box["Gardens"]=[Dominion.Gardens()]*10
+    box["Gardens"]=[Dominion.Gardens()]*nV
     box["Moat"]=[Dominion.Moat()]*10
     box["Council Room"]=[Dominion.Council_Room()]*10
     box["Witch"]=[Dominion.Witch()]*10
