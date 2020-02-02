@@ -13,7 +13,9 @@ cardNames = [
     ]
 
 
-
+'''
+TESTING THE PROPER USAGE OF "ACTION_BALANCE" FUNCTION
+'''
 def test_PLAYER_actionBalance():
     player = testUtility_PLAYER.players[2]
     player.hand.pop()
@@ -23,6 +25,10 @@ def test_PLAYER_actionBalance():
     num = player.action_balance()
     assert(num == -7.0)
 
+
+'''
+TESTING THE PROPER USAGE OF "CALCPOINTS" FUNCTION
+'''
 def test_PLAYER_calcPoints():
     player = testUtility_PLAYER.players[3]
     player.hand.pop()
@@ -50,6 +56,10 @@ def test_PLAYER_calcPoints():
     num = player.calcpoints()
     assert(num == 5)
 
+
+'''
+TESTING THE PROPER USAGE OF "DRAW" FUNCTION
+'''
 def test_PLAYER_draw():
     player = testUtility_PLAYER.players[4]
     player.hand.pop()
@@ -63,6 +73,10 @@ def test_PLAYER_draw():
         numCards += 1
     assert(numCards == 1)
 
+
+'''
+TESTING THE PROPER USAGE OF "CARDSUMMARY" FUNCTION
+'''
 def test_PLAYER_cardSummary():
     player = testUtility_PLAYER.players[5]
     player.hand.pop()
@@ -89,8 +103,6 @@ def test_PLAYER_cardSummary():
 
     cardsum = {}
     cardsum[player.name]=player.cardsummary()
-
-
     for sec in cardsum:
         name = sec
     car = player.cardsummary()

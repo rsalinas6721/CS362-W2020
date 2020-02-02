@@ -12,6 +12,10 @@ cardNames = [
     "Bureaucrat", "Militia", "Spy", "Thief", "Throne Room"
     ]
 
+
+'''
+TESTING THE PROPER USAGE OF "GAMEOVER" FUNCTION
+'''
 def test_GAMEOVER():
     player = testUtility_GAMEOVER.players[0]
     gameexit = Dominion.gameover(testUtility_GAMEOVER.supply)

@@ -12,11 +12,13 @@ cardNames = [
     "Bureaucrat", "Militia", "Spy", "Thief", "Throne Room"
     ]
 
+
 '''
-TESTING THE RIGHT AMOUNT OF PLAYERS
+TESTING THE EXPECTED AMOUNT OF PLAYERS(3)
 '''
 def test_players():
     assert len(testUtility_INIT.player_names) == 3
+
 
 '''
 TESTING THE CONTENTS OF THE BOX
@@ -28,6 +30,7 @@ def test_box():
         if testUtility_INIT.box[name]:
             boxValidation += 1
     assert(boxValidation == 25)
+
 
 '''
 TESTING THE CONTENTS OF THE SUPPLY
@@ -49,6 +52,7 @@ def test_supply():
             else:
                 assert(len(testUtility_INIT.supply[names])) == 10
 
+
 '''
 TESTING THE PROPER DISTRIBUTION OF COINS
 '''
@@ -61,7 +65,7 @@ def test_coins():
         for d in player.deck:
             if((d.name) == 'Copper'):
                 copper += 1
-        assert(copper == 7), player.name + " did not receive the Copper. "
+        assert(copper == 7), player.name + " did not receive the right amount of Copper. "
 
     for player in testUtility_INIT.players:
         silver = 0
@@ -71,7 +75,7 @@ def test_coins():
         for d in player.deck:
             if((d.name) == 'Silver'):
                 silver += 1
-        assert(silver == 0), player.name + " did received Silver. "
+        assert(silver == 0), player.name + " received Silver Coins. "
 
     for player in testUtility_INIT.players:
         gold = 0
@@ -81,4 +85,4 @@ def test_coins():
         for d in player.deck:
             if((d.name) == 'Gold'):
                 gold += 1
-        assert(gold == 0), player.name + " did received Gold. "
+        assert(gold == 0), player.name + " received Gold Coins. "
