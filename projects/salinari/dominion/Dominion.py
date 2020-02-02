@@ -23,43 +23,33 @@ class Card():
 class Coin_card(Card):
     def __init__(self,name,cost,buypower):
         Card.__init__(self,name,"coin",cost,buypower,0)
-
 class Copper(Coin_card):
     def __init__(self):
         Coin_card.__init__(self,"Copper",0,1)
-        
 class Silver(Coin_card):
     def __init__(self):
         Coin_card.__init__(self,"Silver",3,2)
-        
 class Gold(Coin_card):
     def __init__(self):
         Coin_card.__init__(self,"Gold",6,3)
-
 class Victory_card(Card):
     def __init__(self,name,cost,vpoints):
         Card.__init__(self,name,"victory",cost,0,vpoints)
-
 class Estate(Victory_card):
     def __init__(self):
         Victory_card.__init__(self,"Estate",2,1)
-        
 class Duchy(Victory_card):
     def __init__(self):
         Victory_card.__init__(self,"Duchy",5,3)
-    
 class Province(Victory_card):
     def __init__(self):
         Victory_card.__init__(self,"Province",8,6)
-
 class Gardens(Victory_card):
     def __init__(self):
         Victory_card.__init__(self,"Gardens",4,0)
-
 class Curse(Card):
     def __init__(self):
         Card.__init__(self,"Curse","curse",0,0,-1)
-
 class Action_card(Card):
     def __init__(self,name,cost,actions,cards,buys,coins):
         Card.__init__(self,name,"action",cost,0,0)
@@ -78,31 +68,25 @@ class Action_card(Card):
             player.draw()
     def play(self,player,players,supply,trash):
         pass
-    
+
 class Woodcutter(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Woodcutter",3,0,0,1,2)
-
 class Smithy(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Smithy",4,0,3,0,0)
-
 class Laboratory(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Laboratory",5,1,2,0,0)
-
 class Village(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Village",3,2,1,0,0)
-
 class Festival(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Festival",5,2,0,1,2)
-
 class Market(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Market",5,1,1,1,1)
-
 class Chancellor(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Chancellor",3,0,0,0,2)
@@ -110,28 +94,25 @@ class Chancellor(Action_card):
         if player.yesnoinput('Would you like to discard your entire deck?'):
             player.discard = player.discard + player.deck
             player.deck = []
-
 class Workshop(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Workshop",3,0,0,0,0)
     def play(self,player,players,supply,trash):
         player.gaincard(supply,4)
-
 class Moneylender(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Moneylender",4,0,0,0,0)
     def play(self,player,players,supply,trash):
-        c = getcard("Copper",supply,player.hand,"your hand")        
+        c = getcard("Copper",supply,player.hand,"your hand")
         if c:
             trash.append(c)
             player.hand.remove(c)
             player.purse += 3
-
 class Chapel(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Chapel",2,0,0,0,0)
     def play(self,player,players,supply,trash):
-        trashed=0        
+        trashed=0
         while trashed<4 and len(player.hand)>0:
             trashcard = input("Choose a card from your hand to trash: ")
             if not trashcard:
@@ -141,12 +122,11 @@ class Chapel(Action_card):
                 trash.append(c)
                 player.hand.remove(c)
                 trashed+=1
-
 class Cellar(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Cellar",2,1,0,0,0)
     def play(self,player,players,supply,trash):
-        discarded=0        
+        discarded=0
         while len(player.hand)>0:
             dis_card=input("Choose a card from your hand to discard: ")
             if not dis_card:
@@ -158,7 +138,6 @@ class Cellar(Action_card):
                 discarded+=1
         for j in range(discarded):
             player.draw()
-
 class Remodel(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Remodel",4,0,0,0,0)
@@ -171,7 +150,6 @@ class Remodel(Action_card):
                 player.hand.remove(c)
                 player.gaincard(supply,c.cost+2)
                 break
-
 class Adventurer(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Adventurer",6,0,0,0,0)
@@ -183,7 +161,6 @@ class Adventurer(Action_card):
                 coins_added +=1
             else:
                 player.aside.append(player.hand.pop())
-
 class Feast(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Feast",4,0,0,0,0)
@@ -192,7 +169,6 @@ class Feast(Action_card):
         player.hand.remove(self)
     def play(self,player,players,supply,trash):
         player.gaincard(supply,5)
-
 class Mine(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Mine",5,0,0,0,0)
@@ -211,7 +187,6 @@ class Mine(Action_card):
                         supply[pick].remove(g)
                         break
                 break
-
 class Library(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Library",5,0,0,0,0)
@@ -222,22 +197,19 @@ class Library(Action_card):
                 player.aside.append(player.hold.pop())
             else:
                 player.hand.append(player.hold.pop())
-
 class Moat(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Moat",2,0,2,0,0)
     def react(self,player):
-        player.show()        
+        player.show()
         return player.yesnoinput(player.name + ", you have a " + self.name +
                         " in your hand.  Do you want to block the attack?")
-
 class Council_Room(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Council Room",5,0,3,1,0)
     def play(self,this_player,players,supply,trash):
         for player in players:
             player.draw()
-
 class Witch(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Witch",5,0,2,0,0)
@@ -253,7 +225,6 @@ class Witch(Action_card):
                     else:
                         if len(supply["Curse"])>0:
                             player.discard.append(supply["Curse"].pop())
-
 class Bureaucrat(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Bureaucrat",4,0,0,0,0)
@@ -267,7 +238,7 @@ class Bureaucrat(Action_card):
                         break
                 else:
                     player.show()
-                    while True:                        
+                    while True:
                         putback = player.choose_discard(player.name + ", which victory card" +
                         " do you want to put on top of your deck?\n--> ")
                         c = getcard(putback,supply,player.hand,"your hand",["victory"])
@@ -275,7 +246,6 @@ class Bureaucrat(Action_card):
                             player.hand.remove(c)
                             player.deck.insert(0,c)
                             break
-                        
 class Militia(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Militia",4,0,0,0,2)
@@ -294,7 +264,6 @@ class Militia(Action_card):
                             if c:
                                 player.hand.remove(c)
                                 player.discard.append(c)
-                            
 class Spy(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Spy",4,1,1,0,0)
@@ -313,9 +282,7 @@ class Spy(Action_card):
                     ", discard",", keep"):
                         player.discard.append(b)
                     else:
-                        player.deck.insert(0,b)
-                #check logic of this structure
-
+                        player.deck.insert(0,b)                #check logic of this structure
 class Thief(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Thief",4,0,0,0,0)
@@ -332,7 +299,7 @@ class Thief(Action_card):
                 print( player.name, namesinlist(player.hold))
                 if "coin" in catinlist(player.hold):
                     while True:
-                        burn = input("Which card would you like " + player.name + " to trash?\n-->")                
+                        burn = input("Which card would you like " + player.name + " to trash?\n-->")
                         c = getcard(burn,supply,player.hold," the top 2 cards",["coin"])
                         if c:
                             player.hold.remove(c)
@@ -343,14 +310,13 @@ class Thief(Action_card):
                         trash.append(c)
                 player.discard=player.discard+player.hold
                 player.hold = []
-
 class Throne_Room(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Throne Room",4,0,0,0,0)
     def play(self,player,players,supply,trash):
         if "action" in catinlist(player.hand):
             while True:
-                double = input("What card would you like to double?\n--> ")            
+                double = input("What card would you like to double?\n--> ")
                 c = getcard(double,supply,player.hand," your hand",["action"])
                 if c:
                     c.use(player,trash)
@@ -361,7 +327,7 @@ class Throne_Room(Action_card):
                     c.play(player,players,supply,trash)
                     break
 
-                
+
 class Player():
     def __init__(self,name):
         self.name = name
@@ -374,7 +340,6 @@ class Player():
         self.hold = []
         for i in range(5):
             self.draw()
-
     def other(self):
         return self.played+self.discard+self.hold+self.aside
     def stack(self):
@@ -405,7 +370,7 @@ class Player():
             if playthis:
                 c = getcard(playthis,supply,self.hand,"your hand",['action'])
                 if c:
-                    self.actions = self.actions - 1 
+                    self.actions = self.actions - 1
                     c.use(self,trash)
                     c.augment(self)
                     c.play(self,players,supply,trash)
@@ -430,7 +395,7 @@ class Player():
                     self.discard.append(supply[purchase].pop())
                     self.buys = self.buys -1
                     self.purse = self.purse - c.cost
-                    
+
         #cleanup phase
         self.discard = self.discard + self.played + self.hand + self.aside
         self.played = []
@@ -438,7 +403,6 @@ class Player():
         self.aside = []
         for i in range(5):
             self.draw()
-
     def gaincard(self,supply,upto):
         while True:
             gain = input("What would you like to get?  Any card up to " + str(upto) + "\n--> ")
@@ -450,15 +414,13 @@ class Player():
     def yesnoinput(self,prompt,yesstring='',nostring=''):
         print(prompt + "\n1 - Yes" + yesstring + "\n0 - No" + nostring)
         while True:
-            r = input("--> ")        
+            r = input("--> ")
             if r == "0":
                 return False
             if r == "1":
-                return True    
-    
+                return True
     def choose_discard(self,prompt):
         return input(prompt)
-
     def show(self):
         print (self.name)
         print ("hand:", ", ".join(sorted(namesinlist(self.hand))))
@@ -471,14 +433,13 @@ class Player():
         if len(self.aside)>0:
             print ("aside:", ", ".join(sorted(namesinlist(self.aside))))
         print ("\r")
-    
+
     def action_balance(self):
         balance = 0
         for c in self.stack():
             if c.category == "action":
                 balance = balance - 1 + c.actions
         return 70*balance / len(self.stack())
-
     def cardsummary(self):
         summary = {}
         for c in self.stack():
@@ -508,7 +469,7 @@ class ComputerPlayer(Player):
         #beginning and middle of game
         self.buygaintable1 = ["Province","Gold","Laboratory","Festival","Witch",
         "Council Room","Market","Militia","Adventurer","Smithy","Bureaucrat","Silver","Moat",""]
-        #end of game        
+        #end of game
         self.buygaintable2 = ["Province","Gardens","Duchy","Estate","Gold","Silver",""]
         #beginning and middle of the game, too many action cards
         self.buygaintable3 = ["Province","Gold","Festival","Laboratory","Market","Village",
@@ -518,7 +479,7 @@ class ComputerPlayer(Player):
         self.discardtable1 = ["Gardens","Duchy","Province","Estate","Curse","Copper",
         "Village","Bureaucrat","Silver","Militia","Smithy","Council Room","Witch",
         "Festival","Market","Adventurer","Laboratory","Gold","Moat"]
-        
+
     def turn(self,players,supply,trash):
         self.show()
         self.actions = 1
@@ -534,7 +495,7 @@ class ComputerPlayer(Player):
                     print (self.name + " plays " + c.name)
                     self.actions = self.actions - 1
                     c.use(self,trash)
-                    self.index=0                    
+                    self.index=0
                     c.augment(self)
                     c.play(self,players,supply,trash)
                     self.show()
@@ -567,7 +528,7 @@ class ComputerPlayer(Player):
                     print (self.name + " bought " + c.name)
                 else:
                     self.index += 1
-                    
+
         #cleanup phase
         self.discard = self.discard + self.played + self.hand + self.aside
         self.played = []
@@ -575,7 +536,7 @@ class ComputerPlayer(Player):
         self.aside = []
         for i in range(5):
             self.draw()
-    
+
     def getcard(self,name,supply,target_list=None,target_name= "the supply anymore",categories=['action','coin','curse','victory'],upto=100):
         if not name in supply:
             #print name + " is not in this game."
@@ -598,9 +559,9 @@ class ComputerPlayer(Player):
             #print name + " costs " + str(c.cost)
             return None
         return c
-    
+
     def choose_discard(self,prompt):
-        index = 0        
+        index = 0
         while True:
             dis_card = self.discardtable1[index]
             c = self.getcard(dis_card,[dis_card],self.hand)
@@ -608,16 +569,15 @@ class ComputerPlayer(Player):
                 return c.name
             else:
                 index+=1
-            
+
     def yesnoinput(self,prompt,yesstring='',nostring=''):
         return True
 
     def show(self):
         pass
-
 class TablePlayer(ComputerPlayer):
     def __init__(self,name):
-        ComputerPlayer.__init__(self,name) 
+        ComputerPlayer.__init__(self,name)
         self.index=0
         self.buygaintable=[]
         q=re.match(r'([a-zA-Z]+)(\d+)',name)
@@ -630,7 +590,7 @@ class TablePlayer(ComputerPlayer):
         self.discardtable1 = ["Gardens","Duchy","Province","Estate","Curse","Copper",
         "Village","Bureaucrat","Silver","Militia","Smithy","Council Room","Witch",
         "Festival","Market","Adventurer","Laboratory","Gold","Moat"]
-    
+
     def turn(self,players,supply,trash):
         self.show()
         self.actions = 1
@@ -646,7 +606,7 @@ class TablePlayer(ComputerPlayer):
                     #print (self.name + " plays " + c.name)
                     self.actions = self.actions - 1
                     c.use(self,trash)
-                    self.index=0                    
+                    self.index=0
                     c.augment(self)
                     c.play(self,players,supply,trash)
                     self.show()
@@ -676,7 +636,7 @@ class TablePlayer(ComputerPlayer):
                     self.purse = self.purse - c.cost
                 else:
                     self.index += 1
-                    
+
         #cleanup phase
         self.discard = self.discard + self.played + self.hand + self.aside
         self.played = []
@@ -684,8 +644,6 @@ class TablePlayer(ComputerPlayer):
         self.aside = []
         for i in range(5):
             self.draw()
-    
-        
 def gameover(supply):
     if len(supply["Province"])==0:
         return True
@@ -696,13 +654,11 @@ def gameover(supply):
     if out>=3:
         return True
     return False
-
 def namesinlist(cardlist):
-    namelist = []    
+    namelist = []
     for c in cardlist:
         namelist.append(c.name)
     return namelist
-
 def catinlist(cardlist):
     catlist = []
     for c in cardlist:
@@ -731,7 +687,6 @@ def getcard(name,supply,target_list=None,target_name= "the supply anymore",categ
         print (name + " costs " + str(c.cost))
         return None
     return c
-
 def totalbuypower(cardlist):
     TBP = 0
     for c in cardlist:
@@ -739,7 +694,6 @@ def totalbuypower(cardlist):
         if c.category == "action":
             TBP += c.coins
     return TBP
-
 def cardsummaries(players):
     cardsums={}
     for player in players:
@@ -748,14 +702,11 @@ def cardsummaries(players):
     vp=cardsdf.loc[['VICTORY POINTS']]
     cardsdf.drop(['VICTORY POINTS'],inplace=True)
     return pandas.concat([cardsdf,vp],axis=0).fillna(0).astype(int)
-
 def countsupply(supply,form):
     return [len(supply[a]) for a in form]
-
 def countcards(cards,form):
     dcount = Counter(namesinlist(cards))
     return [dcount[a] for a in form]
-
 def rankcards(form,vector):
     od = OrderedDict(zip(form,vector))
     sd = OrderedDict(sorted(od.items(),key = itemgetter(1),reverse=True))
