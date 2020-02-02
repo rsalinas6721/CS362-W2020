@@ -3,7 +3,10 @@ import Dominion
 import random
 from collections import defaultdict
 
-player_names = ["Annie","*Ben","*Carla"]
+player_names = [
+    "*Annie","*Ben","*Carla,*Jenny","*Bob",
+    "*Noelle","*Vick","*Jimmy","*Abby","*Gilbert"
+    ]
 
 if len(player_names)>2:
     nV=12

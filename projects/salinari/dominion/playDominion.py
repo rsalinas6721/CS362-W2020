@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Oct 13 15:42:42 2015
-
-@author: tfleck
-"""
 
 import Dominion
 import random
@@ -56,7 +50,7 @@ supply_order = {0:['Curse','Copper'],2:['Estate','Cellar','Chapel','Moat'],
 #Pick 10 cards from box to be in the supply.
 boxlist = [k for k in box]
 random.shuffle(boxlist)
-random10 = boxlist[:25]
+random10 = boxlist[:10]
 supply = defaultdict(list,[(k,box[k]) for k in random10])
 
 
@@ -83,65 +77,6 @@ for name in player_names:
         players.append(Dominion.Player(name))
 
 #Play the game
-
-
-
-turn  = 0
-player = players[0]
-
-#player.hand.pop()
-#player.hand.insert(0,supply["Woodcutter"].pop())
-#player.draw()
-#numCards = 0
-player.hand.pop()
-player.hand.pop()
-player.hand.pop()
-player.hand.pop()
-player.hand.pop()
-player.hand.insert(0,supply["Copper"].pop())
-player.hand.insert(0,supply["Copper"].pop())
-player.hand.insert(0,supply["Copper"].pop())
-player.hand.insert(0,supply["Estate"].pop())
-player.hand.insert(0,supply["Estate"].pop())
-
-player.deck.pop()
-player.deck.pop()
-player.deck.pop()
-player.deck.pop()
-player.deck.pop()
-player.deck.insert(0,supply["Estate"].pop())
-player.deck.insert(0,supply["Estate"].pop())
-player.deck.insert(0,supply["Estate"].pop())
-player.deck.insert(0,supply["Estate"].pop())
-player.deck.insert(0,supply["Estate"].pop())
-cardsum = {}
-cardsum[player.name]=player.cardsummary()
-
-name = ""
-for sec in cardsum:
-    name = sec
-
-car = player.cardsummary()
-cardNameOne = car.get("Estate")
-cardNameTwo = car.get("Copper")
-vicPoints = car.get("VICTORY POINTS")
-
-#print(numCards)
-#numHandBefore = 0
-
-#c = Dominion.getcard("Woodcutter", supply,player.hand,"your hand")
-#num = player.action_balance()
-#print(num) # -7.0
-
-
-#print(num)
-
-#    print(numHandBefore)
-#    print(numHandAfter)
-
-
-
-'''
 turn  = 0
 while not Dominion.gameover(supply):
     turn += 1
@@ -176,4 +111,3 @@ else:
 
 print("\nGAME OVER!!!\n"+winstring+"\n")
 print(dcs)
-'''

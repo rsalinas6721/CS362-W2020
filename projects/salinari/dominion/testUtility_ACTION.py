@@ -50,7 +50,7 @@ supply_order = {0:['Curse','Copper'],2:['Estate','Cellar','Chapel','Moat'],
 
 boxlist = [k for k in box]
 random.shuffle(boxlist)
-random10 = boxlist[:10]
+random10 = boxlist[:25]
 supply = defaultdict(list,[(k,box[k]) for k in random10])
 
 

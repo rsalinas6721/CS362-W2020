@@ -654,6 +654,7 @@ def gameover(supply):
     if out>=3:
         return True
     return False
+    
 def namesinlist(cardlist):
     namelist = []
     for c in cardlist:
