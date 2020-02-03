@@ -4,7 +4,7 @@ import random
 from collections import defaultdict
 
 player_names = [
-    "*Annie","*Ben","*Carla"
+    "Annie","Ben","Carla"
     ]
 
 if len(player_names)>2:

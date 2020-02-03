@@ -68,7 +68,6 @@ class Action_card(Card):
             player.draw()
     def play(self,player,players,supply,trash):
         pass
-
 class Woodcutter(Action_card):
     def __init__(self):
         Action_card.__init__(self,"Woodcutter",3,0,0,1,2)
@@ -326,8 +325,6 @@ class Throne_Room(Action_card):
                     c.augment(player)
                     c.play(player,players,supply,trash)
                     break
-
-
 class Player():
     def __init__(self,name):
         self.name = name
@@ -433,7 +430,6 @@ class Player():
         if len(self.aside)>0:
             print ("aside:", ", ".join(sorted(namesinlist(self.aside))))
         print ("\r")
-
     def action_balance(self):
         balance = 0
         for c in self.stack():
@@ -449,7 +445,6 @@ class Player():
                 summary[c.name] = 1
         summary['VICTORY POINTS']=self.calcpoints()
         return summary
-
     def calcpoints(self):
         tally = 0
         gardens = 0
@@ -460,7 +455,6 @@ class Player():
             if c.name == "Gardens":
                 gardens+=1
         return tally + n//10 * gardens
-
 class ComputerPlayer(Player):
     def __init__(self,name):
         Player.__init__(self,name)
@@ -654,7 +648,7 @@ def gameover(supply):
     if out>=3:
         return True
     return False
-    
+
 def namesinlist(cardlist):
     namelist = []
     for c in cardlist:

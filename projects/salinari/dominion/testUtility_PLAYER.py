@@ -2,8 +2,8 @@ import Dominion
 from collections import defaultdict
 import random
 player_names = [
-    "*Annie","*Ben","*Carla,*Jenny","*Bob",
-    "*Noelle","*Vick","*Jimmy","*Abby","*Gilbert"
+    "Annie","Ben","Carla, Jenny","Bob",
+    "Noelle","Vick","Jimmy","Abby","Gilbert"
     ]
 
 if len(player_names)>2:
